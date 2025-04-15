@@ -2,13 +2,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { useState } from 'react';
+// Access it like this:
+// Access it like this:
+const apiKey = import.meta.env.VITE_SPOTIFY_API_KEY;
 
 function App() {
   const [keyword, setKeywords ] = useState("")
   const [tracks, setTracks] = useState([])
 
   const getTracks = async () => {
-    let data = await fetch("https://v1.nocodeapi.com/ubuntu/spotify/UCGhdvMrhktMjRNj/search?q=daku&type=track")
+    let data = await fetch(apiKey)
     let convertedData = await data.json();
     console.log(convertedData.tracks.items);
     setTracks(convertedData.tracks.items);
