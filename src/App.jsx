@@ -57,7 +57,7 @@ function App() {
   </div>
 </nav>
 <div className="container">
-  <div className={`row${isLoading ? " d-none" : " "}`}>
+  <div className={`row${isLoading ? " d-none" : ""}`}>
     <div className="col-12 py-3 text-center">
     <div className="progress">
   <div
