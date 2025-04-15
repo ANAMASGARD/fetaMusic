@@ -1,11 +1,10 @@
-
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { useState } from 'react';
 
 function App() {
-
+  const [keyword, setKeywords ] = useState("")
   const [tracks, setTracks] = useState([])
 
   const getTracks = async () => {
@@ -40,12 +39,14 @@ function App() {
      
       
         <input
+        value={keyword}
+        onChange={(e) => setKeywords(e.target.value)}
           className="form-control me-2 w-100 "
           type="search"
           placeholder="Search"
           aria-label="Search"
         />
-        <button className="btn btn-outline-success" type="submit">
+        <button onClick={getTracks} className="btn btn-outline-success" >
           Search
         </button>
       
@@ -54,17 +55,33 @@ function App() {
 </nav>
 <div className="container">
   <div className="row">
-    <button onClick={getTracks} className="btn btn-primary">get Data </button>
-     </div>
+    
      {
      tracks.map((element ) => {
-         return <div className="col" key={element.id}> 
-          <image src = {element.album.images[1].url} alt="" />
-         </div>
+         return <div className="col-lg-3 row-md-6 col-sm-12 py-2" key={element.id}> 
+        
+
+         <div className="card" >
+  <img className="card-img-top" src={element.album.images[1].url}  alt="" />
+  <div className="card-body">
+    <h5 className="card-title">{element.name}</h5>
+    <p className="card-text">
+      Artist: {element.artists[0].name}
+    </p>
+    <p className="card-text">
+      Release date: {element.album.release_date}
+    </p>
+    <audio src={element.preview_url} controls className='w-100'>
+      <p>Your browser does not support the audio element.</p>
+
+    </audio>
+  </div>
+</div>
+</div>
      })
      }
      </div>
-
+</div>
 
     </>
   );
