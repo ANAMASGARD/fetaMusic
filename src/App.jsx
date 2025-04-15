@@ -1,5 +1,4 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 import { useState } from 'react';
 // Access it like this:
@@ -8,6 +7,7 @@ const apiKey = import.meta.env.VITE_SPOTIFY_API_KEY;
 
 function App() {
   const [keyword, setKeywords ] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
   const [tracks, setTracks] = useState([])
 
   const getTracks = async () => {
@@ -20,7 +20,7 @@ function App() {
   return (
     // <> this is a jsx fragment, it allows you to group multiple elements without adding extra nodes to the DOM 
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
         
   <div className="container-fluid">
     <a className="navbar-brand" href="#">
@@ -37,7 +37,7 @@ function App() {
     >
       <span className="navbar-toggler-icon" />
     </button>
-    <div className="collapse navbar-collapse bg-body-tertiary" 
+    <div className="collapse navbar-collapse deflex justify-content-between" 
     id="navbarSupportedContent">
      
       
@@ -57,6 +57,21 @@ function App() {
   </div>
 </nav>
 <div className="container">
+  <div className={`row${isLoading ? " d-none" : " "}`}>
+    <div className="col-12 py-3 text-center">
+    <div className="progress">
+  <div
+    className="progress-bar progress-bar-striped progress-bar-animated"
+    role="progressbar"
+    aria-valuenow={75}
+    aria-valuemin={0}
+    aria-valuemax={100}
+    style={{ width: "75%" }}
+  />
+</div>
+
+    </div>
+  </div>
   <div className="row">
     
      {
